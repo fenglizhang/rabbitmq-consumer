@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlf.dao.UserDao" >
+  <resultMap id="BaseResultMap" type="com.zlf.bo.UserBo" >
+    <id column="userID" property="userid" jdbcType="VARCHAR" />
+    <result column="pwd" property="pwd" jdbcType="VARCHAR" />
+    <result column="userName" property="username" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="birth" property="birth" jdbcType="TIMESTAMP" />
+    <result column="education" property="education" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="userLevle" property="userlevle" jdbcType="VARCHAR" />
+    <result column="enabled" property="enabled" jdbcType="CHAR" />
+    <result column="managecom" property="managecom" jdbcType="VARCHAR" />
+    <result column="saleCom" property="salecom" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="createPeople" property="createpeople" jdbcType="VARCHAR" />
+    <result column="editTime" property="edittime" jdbcType="TIMESTAMP" />
+    <result column="editPeople" property="editpeople" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    userID, pwd, userName, sex, birth, education, phone, status, userLevle, enabled, 
+    managecom, saleCom, createTime, createPeople, editTime, editPeople
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from person_user
+    where userID = #{userid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from person_user
+    where userID = #{userid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zlf.bo.UserBo" >
+    insert into person_user (userID, pwd, userName, 
+      sex, birth, education, 
+      phone, status, userLevle, 
+      enabled, managecom, saleCom, 
+      createTime, createPeople, editTime, 
+      editPeople)
+    values (#{userid,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=CHAR}, #{birth,jdbcType=TIMESTAMP}, #{education,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, #{userlevle,jdbcType=VARCHAR}, 
+      #{enabled,jdbcType=CHAR}, #{managecom,jdbcType=VARCHAR}, #{salecom,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{createpeople,jdbcType=VARCHAR}, #{edittime,jdbcType=TIMESTAMP}, 
+      #{editpeople,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zlf.bo.UserBo" >
+    insert into person_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        userID,
+      </if>
+      <if test="pwd != null" >
+        pwd,
+      </if>
+      <if test="username != null" >
+        userName,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="birth != null" >
+        birth,
+      </if>
+      <if test="education != null" >
+        education,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="userlevle != null" >
+        userLevle,
+      </if>
+      <if test="enabled != null" >
+        enabled,
+      </if>
+      <if test="managecom != null" >
+        managecom,
+      </if>
+      <if test="salecom != null" >
+        saleCom,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="createpeople != null" >
+        createPeople,
+      </if>
+      <if test="edittime != null" >
+        editTime,
+      </if>
+      <if test="editpeople != null" >
+        editPeople,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null" >
+        #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="birth != null" >
+        #{birth,jdbcType=TIMESTAMP},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="userlevle != null" >
+        #{userlevle,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null" >
+        #{enabled,jdbcType=CHAR},
+      </if>
+      <if test="managecom != null" >
+        #{managecom,jdbcType=VARCHAR},
+      </if>
+      <if test="salecom != null" >
+        #{salecom,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createpeople != null" >
+        #{createpeople,jdbcType=VARCHAR},
+      </if>
+      <if test="edittime != null" >
+        #{edittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editpeople != null" >
+        #{editpeople,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zlf.bo.UserBo" >
+    update person_user
+    <set >
+      <if test="pwd != null" >
+        pwd = #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="birth != null" >
+        birth = #{birth,jdbcType=TIMESTAMP},
+      </if>
+      <if test="education != null" >
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="userlevle != null" >
+        userLevle = #{userlevle,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null" >
+        enabled = #{enabled,jdbcType=CHAR},
+      </if>
+      <if test="managecom != null" >
+        managecom = #{managecom,jdbcType=VARCHAR},
+      </if>
+      <if test="salecom != null" >
+        saleCom = #{salecom,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createpeople != null" >
+        createPeople = #{createpeople,jdbcType=VARCHAR},
+      </if>
+      <if test="edittime != null" >
+        editTime = #{edittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editpeople != null" >
+        editPeople = #{editpeople,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userID = #{userid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zlf.bo.UserBo" >
+    update person_user
+    set pwd = #{pwd,jdbcType=VARCHAR},
+      userName = #{username,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=CHAR},
+      birth = #{birth,jdbcType=TIMESTAMP},
+      education = #{education,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      userLevle = #{userlevle,jdbcType=VARCHAR},
+      enabled = #{enabled,jdbcType=CHAR},
+      managecom = #{managecom,jdbcType=VARCHAR},
+      saleCom = #{salecom,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      createPeople = #{createpeople,jdbcType=VARCHAR},
+      editTime = #{edittime,jdbcType=TIMESTAMP},
+      editPeople = #{editpeople,jdbcType=VARCHAR}
+    where userID = #{userid,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="queryByPwdAndUsername" parameterType="com.zlf.bo.UserBo" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from person_user
+   <where>
+   1=1
+     <if test="pwd != null" >
+       and pwd = #{pwd,jdbcType=VARCHAR}
+      </if>
+      <if test="username != null" >
+        and userName = #{username,jdbcType=VARCHAR}
+      </if>
+   </where> 
+  	 
+  
+  </select>
+</mapper>
